@@ -1,0 +1,21 @@
+from Crypto.Util.number import *
+from flag import flag
+import os
+
+def print_source_code():
+    filename = os.path.abspath(__file__)
+    with open(filename, 'r') as f:
+        print(f.read())
+
+
+def encrypt(flag):
+    plain = bytes_to_long(flag.ljust(114514, "\x00").encode())
+    return pow(plain, e, n)
+
+n = 74224694190378245570662914514197080111808324634781677418701441263524880254209023098028414752153116247558921852342579052620848368822288495663953364161190265839271585860352129564216547402136600849476321773029405114130903399735699724437227139229796496995834686374625593947966539751536221128712735603857178093087
+e = 3
+c = encrypt(flag)
+
+print_source_code()
+print("=" * 10)
+print("c = {0}".format(c))
